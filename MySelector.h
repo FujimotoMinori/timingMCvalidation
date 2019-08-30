@@ -286,27 +286,28 @@ public :
    TH1F* hist_trk_z0;      
    TH1F* hist_trk_deltaZ;  
 
-   TH1F* hist_trk_dph; 
-   TH1F* hist_trk_det; 
+   TH1F* hist_trk_dpt;
+   TH1F* hist_trk_dphi; 
+   TH1F* hist_trk_deta; 
    TH1F* hist_trk_dd0; 
    TH1F* hist_trk_dz0; 
    TH1F* hist_trk_nPixHits; 
-   TH1F* hist_trk_nGangedPx        ; 
-   TH1F* hist_trk_nPixLay          ; 
-   TH1F* hist_trk_nPixShardHits    ; 
-   TH1F* hist_trk_nPixSplitHits     ; 
-   TH1F* hist_trk_nPixOutliers      ; 
-   TH1F* hist_trk_nPixHoles         ; 
-   TH1F* hist_trk_nPixelDeadSensors ; 
-   TH1F* hist_trk_nOutliers         ;
-   TH1F* hist_trk_stdDevChi2OS      ;
+   TH1F* hist_trk_nGangedPix; 
+   TH1F* hist_trk_nPixLay; 
+   TH1F* hist_trk_nPixSharedHits; 
+   TH1F* hist_trk_nPixSplitHits; 
+   TH1F* hist_trk_nPixOutliers; 
+   TH1F* hist_trk_nPixHoles; 
+   TH1F* hist_trk_nPixelDeadSensors; 
+   TH1F* hist_trk_nOutliers;
+   TH1F* hist_trk_stdDevChi2OS;
    //TH1F* hist_trk_truthMatchProb  ;
-   TH1F* hist_BLY_IsEdge            ; 
-   TH1F* hist_BLY_IsOverflow        ; 
-   TH1F* hist_BLY_IsSplit           ; 
-   TH1F* hist_BLY_L1A               ;
-   TH1F* hist_BLY_ToT               ; 
-   TH1F* hist_BLY_Charge            ; 
+   TH1F* hist_BLY_IsEdge; 
+   TH1F* hist_BLY_IsOverflow; 
+   TH1F* hist_BLY_IsSplit; 
+   TH1F* hist_BLY_L1A;
+   TH1F* hist_BLY_ToT; 
+   TH1F* hist_BLY_Charge; 
    //TH1F* hist_BLY_dEdx            ; 
    TH1F* hist_BLY_HitSize           ; 
    TH1F* hist_BLY_HitSizePhi        ; 
@@ -347,7 +348,7 @@ public :
    TH1F* hist_LY2_unbiasedResidualY ;
    TH1F* hist_LY2_Isolation10x2     ;
    TH1F* hist_LY2_Isolation20x4     ;
-   TH1F* hist_LY2_numTotalClustersPeModule ;
+   TH1F* hist_LY2_numTotalClustersPerModule ;
    TH1F* hist_LY2_numTotalPixelsPerModule   ;
 
    //TH2F

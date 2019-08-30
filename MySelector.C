@@ -49,22 +49,22 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
 
     //TH1F
     h_LB= new TH1F("LB", "; LB; Events", 100, 0.0, 1500.0);
-    hist_trk_num = new TH1F("hist_trk_num","", 200,  0.0, 1000.0); 
-    hist_trk_pt  = new TH1F("hist_trk_pt","",  200,  0.0, 50.0); 
-    hist_trk_eta = new TH1F("hist_trk_eta","",  56, -2.8, 2.8); 
-    hist_trk_phi = new TH1F("hist_trk_phi","",  64,  -TMath::Pi(), TMath::Pi()); 
-    hist_trk_qoverp = new TH1F("hist_trk_qoverp", "", 200,  -2e-3,  2e-3); 
-    hist_trk_d0     = new TH1F("hist_trk_d0",     "", 100,   -0.2,   0.2); 
-    hist_trk_z0     = new TH1F("hist_trk_z0",     "", 100, -200.0, 200.0); 
-    hist_trk_deltaZ = new TH1F("hist_trk_deltaZ", "", 100, -5.0, 5.0);
+    hist_trk_num = new TH1F("hist_trk_num",";track number ;Events", 200,  0.0, 1000.0); 
+    hist_trk_pt  = new TH1F("hist_trk_pt",";track pt ;Events",  200,  0.0, 50.0); 
+    hist_trk_eta = new TH1F("hist_trk_eta",";track eta;Events",  56, -2.8, 2.8); 
+    hist_trk_phi = new TH1F("hist_trk_phi",";track phi;Events",  64,  -TMath::Pi(), TMath::Pi()); 
+    hist_trk_qoverp = new TH1F("hist_trk_qoverp", ";track q/P;Events", 200,  -2e-3,  2e-3); 
+    hist_trk_d0     = new TH1F("hist_trk_d0",     ";track d0;Events", 100,   -0.2,   0.2); 
+    hist_trk_z0     = new TH1F("hist_trk_z0",     ";track z0;Events", 100, -200.0, 200.0); 
+    hist_trk_deltaZ = new TH1F("hist_trk_deltaZ", ";track deltaZ;Events", 100, -5.0, 5.0);
     /* Resolution */
-    hist_trk_dpt   = new TH1F("hist_trk_dpt",  "", 100, -5.0, 5.0); 
-    hist_trk_dphi  = new TH1F("hist_trk_dphi", "", 100, -5.0, 5.0); 
-    hist_trk_deta  = new TH1F("hist_trk_deta", "", 100, -5.0, 5.0); 
-    hist_trk_dd0   = new TH1F("hist_trk_dd0",  "", 100, -5.0, 5.0); 
-    hist_trk_dz0   = new TH1F("hist_trk_dz0",  "", 100, -5.0, 5.0); 
+    hist_trk_dpt   = new TH1F("hist_trk_dpt",  "; dpt;Events", 100, -5.0, 5.0); 
+    hist_trk_dphi  = new TH1F("hist_trk_dphi", "; dphi;Events", 100, -5.0, 5.0); 
+    hist_trk_deta  = new TH1F("hist_trk_deta", "; deta;Events", 100, -5.0, 5.0); 
+    hist_trk_dd0   = new TH1F("hist_trk_dd0",  "; dd0;Events", 100, -5.0, 5.0); 
+    hist_trk_dz0   = new TH1F("hist_trk_dz0",  "; dz0;Events", 100, -5.0, 5.0); 
     /* track*/
-    hist_trk_nPixHits = new TH1F("hist_trk_nPixHits", "", 16, -0.5, 15.5); 
+    hist_trk_nPixHits = new TH1F("hist_trk_nPixHits", ";nPixHits;Events", 16, -0.5, 15.5); 
     hist_trk_nGangedPix        = new TH1F("hist_trk_nGangedPix",        "",   8, -0.5,  7.5); 
     hist_trk_nPixLay           = new TH1F("hist_trk_nPixLay",           "",  10, -0.5,  9.5); 
     hist_trk_nPixSharedHits    = new TH1F("hist_trk_nPixSharedHits",    "",   8, -0.5,  7.5); 
@@ -79,7 +79,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_BLY_IsEdge            = new TH1F("hist_BLY_IsEdge",            "",   2, -0.5,   1.5); 
     hist_BLY_IsOverflow        = new TH1F("hist_BLY_IsOverflow",        "",   2, -0.5,   1.5); 
     hist_BLY_IsSplit           = new TH1F("hist_BLY_IsSplit",           "",   2, -0.5,   1.5); 
-    hist_BLY_L1A               = new TH1F("hist_BLY_L1A",               "",   6, -2.5,   3.5);
+    hist_BLY_L1A               = new TH1F("hist_BLY_L1A",               ";L1A(blayer);Events",   6, -2.5,   3.5);
     hist_BLY_ToT               = new TH1F("hist_BLY_ToT",               "", 100, -0.5, 199.5); 
     hist_BLY_Charge            = new TH1F("hist_BLY_Charge",            "",  60,  0.0, 120.0); 
     //hist_BLY_dEdx              = new TH1F("hist_BLY_dEdx",              "",  50,  0.0,  10.0); 
@@ -102,7 +102,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_LY1_IsEdge            = new TH1F("hist_LY1_IsEdge",     "",   2, -0.5, 1.5); 
     hist_LY1_IsOverflow        = new TH1F("hist_LY1_IsOverflow", "",   2, -0.5, 1.5); 
     hist_LY1_IsSplit           = new TH1F("hist_LY1_IsSplit",    "",   2, -0.5, 1.5); 
-    hist_LY1_L1A               = new TH1F("hist_LY1_L1A",        "",   6, -2.5, 3.5);
+    hist_LY1_L1A               = new TH1F("hist_LY1_L1A",        ";L1A(L1);Events",   6, -2.5, 3.5);
     hist_LY1_ToT               = new TH1F("hist_LY1_ToT",        "", 100, -0.5, 199.5); 
     hist_LY1_Charge            = new TH1F("hist_LY1_Charge",     "",  60,  0.0, 120.0); 
     //hist_LY1_dEdx              = new TH1F("hist_LY1_dEdx",       "",  50,  0.0, 10.0); 
@@ -125,7 +125,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_LY2_IsEdge            = new TH1F("hist_LY2_IsEdge",            "",   2, -0.5,   1.5); 
     hist_LY2_IsOverflow        = new TH1F("hist_LY2_IsOverflow",        "",   2, -0.5,   1.5); 
     hist_LY2_IsSplit           = new TH1F("hist_LY2_IsSplit",           "",   2, -0.5,   1.5); 
-    hist_LY2_L1A               = new TH1F("hist_LY2_L1A",               "",   6, -2.5,   3.5);
+    hist_LY2_L1A               = new TH1F("hist_LY2_L1A",               ";L1A(L2);Events",   6, -2.5,   3.5);
     hist_LY2_ToT               = new TH1F("hist_LY2_ToT",               "", 100, -0.5, 199.5); 
     hist_LY2_Charge            = new TH1F("hist_LY2_Charge",            "",  60,  0.0, 120.0); 
     //hist_LY2_dEdx              = new TH1F("hist_LY2_dEdx",              "",  50,  0.0,  10.0); 
@@ -154,8 +154,8 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trk_z0);      
     ListTH1F.push_back(hist_trk_deltaZ); 
     ListTH1F.push_back(hist_trk_dpt); 
-    ListTH1F.push_back(hist_trk_dph); 
-    ListTH1F.push_back(hist_trk_det); 
+    ListTH1F.push_back(hist_trk_dphi); 
+    ListTH1F.push_back(hist_trk_deta); 
     ListTH1F.push_back(hist_trk_dd0); 
     ListTH1F.push_back(hist_trk_dz0); 
     ListTH1F.push_back(hist_trk_nPixHits); 
@@ -272,13 +272,14 @@ Bool_t MySelector::Process(Long64_t entry)
         hist_trk_stdDevChi2OS->Fill(trackStdDevChi2OS[i]);      
         /*resolution*/
         hist_trk_dpt->Fill(trackPt[i]-truePt[i]/truePt[i]);
-        hist_trk_dph->Fill(trackPhi[i]-truePhi[i]/truePhi[i]);
-        hist_trk_det->Fill(trackEta[i]-trueEta[i]/trueEta[i]);
-        hist_trk_dd0->Fill(trackD0[i]-trueD0[i]/trueD0[i]);
-        hist_trk_dz0->Fill(trackZ0[i]-trueZ0[i]/trueZ0[i]);
+        hist_trk_dphi->Fill(trackPhi[i]-truePhi[i]/truePhi[i]);
+        hist_trk_deta->Fill(trackEta[i]-trueEta[i]/trueEta[i]);
+        hist_trk_dd0->Fill(trackD0[i]-trued0[i]/trued0[i]);
+        hist_trk_dz0->Fill(trackZ0[i]-truez0[i]/truez0[i]);
 
-        for (int j=0; j<(int)(hitLayer)[i].GetSize(); j++) {
-            if ((*hitIsEndCap)[i][j]==0 && (*hitLayer)[i][j]==1) { //blayer
+        int nhits = (int)(hitLayer[i]).size();
+        for (int j=0; j<nhits; j++) {
+            if ((hitIsEndCap)[i][j]==0 && (hitLayer)[i][j]==1) { //blayer
                 hist_BLY_IsEdge->Fill(hitIsEdge[i][j]);             
                 hist_BLY_IsOverflow->Fill(hitIsOverflow[i][j]);         
                 hist_BLY_IsSplit->Fill(hitIsSplit[i][j]);            
@@ -294,9 +295,9 @@ Bool_t MySelector::Process(Long64_t entry)
                 hist_BLY_Isolation10x2->Fill(hitIsolation10x2[i][j]);     
                 hist_BLY_Isolation20x4->Fill(hitIsolation20x4[i][j]);     
                 hist_BLY_numTotalClustersPerModule->Fill(numTotalClustersPerModule[i][j]);
-                hist_BLY_numTotalPixelsPerModule->Fill(numTotalPixelClustersPerModule[i][j]); 
+                hist_BLY_numTotalPixelsPerModule->Fill(numTotalPixelsPerModule[i][j]); 
             }
-            else if ((*hitIsEndCap)[i][j]==0 && (*hitLayer)[i][j]==2) { //layer1
+            else if ((hitIsEndCap)[i][j]==0 && (hitLayer)[i][j]==2) { //layer1
                 hist_LY1_IsEdge->Fill(hitIsEdge[i][j]);             
                 hist_LY1_IsOverflow->Fill(hitIsOverflow[i][j]);         
                 hist_LY1_IsSplit->Fill(hitIsSplit[i][j]);            
@@ -312,9 +313,9 @@ Bool_t MySelector::Process(Long64_t entry)
                 hist_LY1_Isolation10x2->Fill(hitIsolation10x2[i][j]);     
                 hist_LY1_Isolation20x4->Fill(hitIsolation20x4[i][j]);     
                 hist_LY1_numTotalClustersPerModule->Fill(numTotalClustersPerModule[i][j]);
-                hist_LY1_numTotalPixelsPerModule->Fill(numTotalPixelClustersPerModule[i][j]); 
+                hist_LY1_numTotalPixelsPerModule->Fill(numTotalPixelsPerModule[i][j]); 
             }
-            else if ((*hitIsEndCap)[i][j]==0 && (*hitLayer)[i][j]==3) { //layer2
+            else if ((hitIsEndCap)[i][j]==0 && (hitLayer)[i][j]==3) { //layer2
                 hist_LY2_IsEdge->Fill(hitIsEdge[i][j]);             
                 hist_LY2_IsOverflow->Fill(hitIsOverflow[i][j]);         
                 hist_LY2_IsSplit->Fill(hitIsSplit[i][j]);            
@@ -330,7 +331,7 @@ Bool_t MySelector::Process(Long64_t entry)
                 hist_LY2_Isolation10x2->Fill(hitIsolation10x2[i][j]);     
                 hist_LY2_Isolation20x4->Fill(hitIsolation20x4[i][j]);     
                 hist_LY2_numTotalClustersPerModule->Fill(numTotalClustersPerModule[i][j]);
-                hist_LY1_numTotalPixelsPerModule->Fill(numTotalPixelClustersPerModule[i][j]); 
+                hist_LY1_numTotalPixelsPerModule->Fill(numTotalPixelsPerModule[i][j]); 
             }
         }
 
