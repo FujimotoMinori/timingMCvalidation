@@ -279,18 +279,26 @@ public :
    TH1F* h_LB;
    TH1F* hist_trk_num; 
    TH1F* hist_trk_pt;  
-   TH1F* hist_trk_eta; 
    TH1F* hist_trk_phi; 
+   TH1F* hist_trk_eta; 
    TH1F* hist_trk_qoverp;  
    TH1F* hist_trk_d0;      
    TH1F* hist_trk_z0;      
    TH1F* hist_trk_deltaZ;  
+   TH1F* h_trackD0Err;
+   TH1F* h_trackZ0Err;
+   TH1F* h_trackTheta;
+   TH1F* h_trackCharge;
+   TH1F* h_trackMindR;
+   TH1F* h_trackClass;
+   TH1F* h_trackPassCut;
 
    TH1F* hist_trk_dpt;
    TH1F* hist_trk_dphi; 
    TH1F* hist_trk_deta; 
    TH1F* hist_trk_dd0; 
    TH1F* hist_trk_dz0; 
+
    TH1F* hist_trk_nPixHits; 
    TH1F* hist_trk_nGangedPix; 
    TH1F* hist_trk_nPixLay; 
@@ -301,6 +309,21 @@ public :
    TH1F* hist_trk_nPixelDeadSensors; 
    TH1F* hist_trk_nOutliers;
    TH1F* hist_trk_stdDevChi2OS;
+   TH1F* h_trackChiSqPerDof;      
+
+   TH1F* h_trackNIBLUsedHits;     
+   TH1F* h_trackNBLUsedHits;      
+   TH1F* h_trackNSplitIBLHits;    
+   TH1F* h_trackNSplitBLHits;     
+   TH1F* h_trackNSharedIBLHits;   
+   TH1F* h_trackNSharedBLHits;    
+   TH1F* h_trackNIBLHits;        
+   TH1F* h_trackNBLHits;         
+   TH1F* h_trackNL1Hits;         
+   TH1F* h_trackNL2Hits;         
+   TH1F* h_trackNIBLExpectedHits;
+   TH1F* h_trackNBLExpectedHits; 
+
    //TH1F* hist_trk_truthMatchProb  ;
    TH1F* hist_BLY_IsEdge; 
    TH1F* hist_BLY_IsOverflow; 
