@@ -71,6 +71,12 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trk_deta  = new TH1F("hist_trk_deta", "; deta;", 100, -5.0, 5.0); 
     hist_trk_dd0   = new TH1F("hist_trk_dd0",  "; dd0;", 100, -5.0, 5.0); 
     hist_trk_dz0   = new TH1F("hist_trk_dz0",  "; dz0;", 100, -5.0, 5.0); 
+    /*efficiency*/
+    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; efficiency pt;", 400, -2.0, 2.0); 
+    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; efficiency phi;", 400, -2.0, 2.0); 
+    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; efficiency eta;", 400, -2.0, 2.0); 
+    hist_trkeff_d0   = new TH1F("hist_trkeff_d0",  "; efficiency d0;", 400, -2.0, 2.0); 
+    hist_trkeff_z0   = new TH1F("hist_trkeff_z0",  "; efficiency z0;", 400, -2.0, 2.0); 
     /* track*/
     hist_trk_nPixHits = new TH1F("hist_trk_nPixHits", ";track nPixHits;", 16, -0.5, 15.5); 
     hist_trk_nGangedPix        = new TH1F("hist_trk_nGangedPix",        ";track nGangedPixel;",   8, -0.5,  7.5); 
@@ -187,6 +193,11 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trk_deta); 
     ListTH1F.push_back(hist_trk_dd0); 
     ListTH1F.push_back(hist_trk_dz0); 
+    ListTH1F.push_back(hist_trkeff_pt); 
+    ListTH1F.push_back(hist_trkeff_phi); 
+    ListTH1F.push_back(hist_trkeff_eta); 
+    ListTH1F.push_back(hist_trkeff_d0); 
+    ListTH1F.push_back(hist_trkeff_z0); 
     ListTH1F.push_back(hist_trk_nPixHits); 
     ListTH1F.push_back(hist_trk_nGangedPix        ); 
     ListTH1F.push_back(hist_trk_nPixLay           ); 
@@ -338,8 +349,22 @@ Bool_t MySelector::Process(Long64_t entry)
         hist_trk_deta->Fill(trackEta[i]-trueEta[i]/trueEta[i]);
         hist_trk_dd0->Fill(trackD0[i]-trued0[i]/trued0[i]);
         hist_trk_dz0->Fill(trackZ0[i]-truez0[i]/truez0[i]);
+        /*efficiency*/
+	// Loose track selection
+	bool selected = false;
+	if (trackPt[i] > 0.4 && TMath::Abs((trackEta)[i])<=2.5  
+                             && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
+                             && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
+                             && trackNPixelHoles[i]<=1 
+                             && (trackNPixelHoles[i]+trackNSCTHoles[i])<=2 ) { selected=true; }
+	if (!selected) { continue; }
+	hist_trkeff_pt->Fill(trackPt[i]/truePt[i]);
+	hist_trkeff_phi->Fill(trackPhi[i]/truePhi[i]);
+	hist_trkeff_eta->Fill(trackEta[i]/trueEta[i]);
+	hist_trkeff_d0->Fill(trackD0[i]/trued0[i]);
+	hist_trkeff_z0->Fill(trackZ0[i]/truez0[i]);
 
-        int nhits = (int)(hitLayer[i]).size();
+    int nhits = (int)(hitLayer[i]).size();
         for (int j=0; j<nhits; j++) {
             if ((hitIsEndCap)[i][j]==0 && (hitLayer)[i][j]==1) { //blayer
                 hist_BLY_IsEdge->Fill(hitIsEdge[i][j]);             

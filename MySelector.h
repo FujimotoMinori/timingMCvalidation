@@ -299,6 +299,12 @@ public :
    TH1F* hist_trk_dd0; 
    TH1F* hist_trk_dz0; 
 
+   TH1F* hist_trkeff_pt;
+   TH1F* hist_trkeff_phi; 
+   TH1F* hist_trkeff_eta; 
+   TH1F* hist_trkeff_d0; 
+   TH1F* hist_trkeff_z0; 
+
    TH1F* hist_trk_nPixHits; 
    TH1F* hist_trk_nGangedPix; 
    TH1F* hist_trk_nPixLay; 
