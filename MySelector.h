@@ -278,9 +278,17 @@ public :
    //TH1F
    TH1F* h_LB;
    TH1F* hist_trk_num; 
+   TH1F* hist_trktrue_num; 
+   TH1F* hist_truth_num; 
    TH1F* hist_trk_pt;  
+   TH1F* hist_true_pt;  
+   TH1F* hist_truepass_pt;  
    TH1F* hist_trk_phi; 
+   TH1F* hist_true_phi;  
+   TH1F* hist_truepass_phi;  
    TH1F* hist_trk_eta; 
+   TH1F* hist_true_eta;  
+   TH1F* hist_truepass_eta;  
    TH1F* hist_trk_qoverp;  
    TH1F* hist_trk_d0;      
    TH1F* hist_trk_z0;      
@@ -299,11 +307,12 @@ public :
    TH1F* hist_trk_dd0; 
    TH1F* hist_trk_dz0; 
 
+   TH1F* hist_trk_dr; 
    TH1F* hist_trkeff_pt;
    TH1F* hist_trkeff_phi; 
    TH1F* hist_trkeff_eta; 
-   TH1F* hist_trkeff_d0; 
-   TH1F* hist_trkeff_z0; 
+   //TH1F* hist_trkeff_d0; 
+   //TH1F* hist_trkeff_z0; 
 
    TH1F* hist_trk_nPixHits; 
    TH1F* hist_trk_nGangedPix; 
