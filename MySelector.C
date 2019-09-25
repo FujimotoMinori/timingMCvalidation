@@ -53,8 +53,8 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trktrue_num = new TH1F("hist_trktrue_num",";truetrack number ;", 200,  0.0, 1000.0); 
     hist_truth_num = new TH1F("hist_truth_num",";truth number ;", 200,  0.0, 1000.0); 
     hist_trk_pt  = new TH1F("hist_trk_pt",";track pt ;",  20,  0.0, 20.0); //200
-    hist_true_pt  = new TH1F("hist_true_pt",";truetrack pt ;",  20,  0.0, 20.0); 
-    hist_truepass_pt  = new TH1F("hist_truepass_pt",";truepass pt ;",  20,  0.0, 20.0); 
+    hist_true_pt  = new TH1F("hist_true_pt",";truetrack pt ;",  50,  0.0, 5.0); 
+    hist_truepass_pt  = new TH1F("hist_truepass_pt",";truepass pt ;",  50,  0.0, 5.0); 
     hist_trk_eta = new TH1F("hist_trk_eta",";track eta;",  56, -2.8, 2.8); 
     hist_true_eta = new TH1F("hist_true_eta",";true eta;",  56, -2.8, 2.8); 
     hist_truepass_eta  = new TH1F("hist_truepass_eta",";truepass eta ;",  56, -2.8, 2.8); 
@@ -81,11 +81,9 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trk_dz0   = new TH1F("hist_trk_dz0",  "; dz0;", 100, -5.0, 5.0); 
     /*efficiency*/
     hist_trk_dr   = new TH1F("hist_trk_dr",  "; dr;", 500, 0.0, 0.5); 
-    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;", 10, 0.0, 20.0); 
-    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;", 56, -2.8, 2.8); 
-    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;", 64,-TMath::Pi(), TMath::Pi()); 
-    //hist_trkeff_d0   = new TH1F("hist_trkeff_d0",  "; efficiency d0;", 400, -2.0, 2.0); 
-    //hist_trkeff_z0   = new TH1F("hist_trkeff_z0",  "; efficiency z0;", 400, -2.0, 2.0); 
+    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;efficiency", 50, 0.0, 5.0); 
+    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;efficiency", 56, -2.8, 2.8); 
+    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;efficiency", 64,-TMath::Pi(), TMath::Pi()); 
     /* track*/
     hist_trk_nPixHits = new TH1F("hist_trk_nPixHits", ";track nPixHits;", 16, -0.5, 15.5); 
     hist_trk_nGangedPix        = new TH1F("hist_trk_nGangedPix",        ";track nGangedPixel;",   8, -0.5,  7.5); 
@@ -465,14 +463,19 @@ Bool_t MySelector::Process(Long64_t entry)
 
     for (int j=0; j<ntrackstrue; j++) { //true loop
 	    hist_true_pt->Fill(truePt[j]);
+	    hist_true_eta->Fill(trueEta[j]);
+	    hist_true_phi->Fill(truePhi[j]);
 	    // Loose track selection
+	    //bool trackSel = false;
 	    bool selected = false;
 	    for (int i=0; i<ntracks; i++) { //track loop
+		    //if ((TMath::Abs((trackEta)[i])<=1.65 && (trackNSCTHits)[i]>=6) || (TMath::Abs((trackEta)[i])>1.65 && (trackNSCTHits)[i]>=8)) { trackSel=true; }
+		    //if (!trackSel) { continue; }
 		    if (trackPt[i] > 0.4 && TMath::Abs((trackEta)[i])<=2.5  
-				    && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
-				    && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
-				    && trackNPixelHoles[i]<=1 
-				    && (trackNPixelHoles[i]+trackNSCTHoles[i])<=2 ) { selected=true; }
+		        	    && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
+		        	    && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
+		        	    && trackNPixelHoles[i]<=1 
+		        	    && (trackNPixelHoles[i]+trackNSCTHoles[i])<=2 ) { selected=true; }
 		    if (!selected) { continue; }
 		    double dPhi = 0.;
 		    double dEta = 0.;
@@ -481,20 +484,16 @@ Bool_t MySelector::Process(Long64_t entry)
 		    dEta = trackEta[i]-trueEta[j];
 		    dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
 		    hist_trk_dr->Fill(dR);
-		    if (dR <= 0.01) {
+		    if (dR <= 0.02) {
 			    hist_truepass_pt->Fill(truePt[j]);
 			    hist_truepass_eta->Fill(trueEta[j]);
 			    hist_truepass_phi->Fill(truePhi[j]);
 		    }
 	    }
     }
-    //hist_trkeff_phi->Fill(trackPhi[i]/truePhi[i]);
-    //hist_trkeff_eta->Fill(trackEta[i]/trueEta[i]);
-    //hist_trkeff_d0->Fill(trackD0[i]/trued0[i]);
-    //hist_trkeff_z0->Fill(trackZ0[i]/truez0[i]);
     hist_trkeff_pt->Divide(hist_truepass_pt,hist_true_pt,1,1);
-    //hist_trkeff_eta->Divide(hist_truepass_eta,hist_true_eta,1,1);
-    //hist_trkeff_phi->Divide(hist_truepass_phi,hist_true_phi,1,1);
+    hist_trkeff_eta->Divide(hist_truepass_eta,hist_true_eta,1,1);
+    hist_trkeff_phi->Divide(hist_truepass_phi,hist_true_phi,1,1);
     return kTRUE;
 }
 
