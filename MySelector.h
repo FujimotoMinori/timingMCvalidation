@@ -281,12 +281,15 @@ public :
    TH1F* hist_trktrue_num; 
    TH1F* hist_truth_num; 
    TH1F* hist_trk_pt;  
+   TH1F* hist_trk_pt_loose;  
    TH1F* hist_true_pt;  
    TH1F* hist_truepass_pt;  
    TH1F* hist_trk_phi; 
+   TH1F* hist_trk_phi_loose; 
    TH1F* hist_true_phi;  
    TH1F* hist_truepass_phi;  
    TH1F* hist_trk_eta; 
+   TH1F* hist_trk_eta_loose; 
    TH1F* hist_true_eta;  
    TH1F* hist_truepass_eta;  
    TH1F* hist_trk_qoverp;  
@@ -311,6 +314,9 @@ public :
    TH1F* hist_trkeff_pt;
    TH1F* hist_trkeff_phi; 
    TH1F* hist_trkeff_eta; 
+   TH1F* hist_trkeff_pt_vtrk;
+   TH1F* hist_trkeff_phi_vtrk; 
+   TH1F* hist_trkeff_eta_vtrk; 
    //TH1F* hist_trkeff_d0; 
    //TH1F* hist_trkeff_z0; 
 

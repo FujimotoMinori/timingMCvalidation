@@ -45,7 +45,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     // The tree argument is deprecated (on PROOF 0 is passed).
 
     TString option = GetOption();
-    outputfile_ = "output15.root";
+    outputfile_ = "output18.root";
 
     //TH1F
     h_LB= new TH1F("LB", "; LB; ", 100, 0.0, 1500.0);
@@ -53,12 +53,15 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trktrue_num = new TH1F("hist_trktrue_num",";truetrack number ;", 200,  0.0, 1000.0); 
     hist_truth_num = new TH1F("hist_truth_num",";truth number ;", 200,  0.0, 1000.0); 
     hist_trk_pt  = new TH1F("hist_trk_pt",";track pt ;",  20,  0.0, 20.0); //200
+    hist_trk_pt_loose  = new TH1F("hist_trk_pt_loose",";track pt (passed loose selection);",  50,  0.0, 5.0); 
     hist_true_pt  = new TH1F("hist_true_pt",";truetrack pt ;",  50,  0.0, 5.0); 
     hist_truepass_pt  = new TH1F("hist_truepass_pt",";truepass pt ;",  50,  0.0, 5.0); 
     hist_trk_eta = new TH1F("hist_trk_eta",";track eta;",  56, -2.8, 2.8); 
+    hist_trk_eta_loose = new TH1F("hist_trk_eta_loose",";track eta (passed loose selection);",  56, -2.8, 2.8); 
     hist_true_eta = new TH1F("hist_true_eta",";true eta;",  56, -2.8, 2.8); 
     hist_truepass_eta  = new TH1F("hist_truepass_eta",";truepass eta ;",  56, -2.8, 2.8); 
     hist_trk_phi = new TH1F("hist_trk_phi",";track phi;",  64,  -TMath::Pi(), TMath::Pi()); 
+    hist_trk_phi_loose = new TH1F("hist_trk_phi_loose",";track phi (passed loose selection) ;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_true_phi = new TH1F("hist_true_phi",";true phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_truepass_phi = new TH1F("hist_truepass_phi",";truepass phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_trk_qoverp = new TH1F("hist_trk_qoverp", ";track q/P;", 200,  -2e-3,  2e-3); 
@@ -81,9 +84,12 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trk_dz0   = new TH1F("hist_trk_dz0",  "; dz0;", 100, -5.0, 5.0); 
     /*efficiency*/
     hist_trk_dr   = new TH1F("hist_trk_dr",  "; dr;", 500, 0.0, 0.5); 
-    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;efficiency", 50, 0.0, 5.0); 
-    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;efficiency", 56, -2.8, 2.8); 
-    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;efficiency", 64,-TMath::Pi(), TMath::Pi()); 
+    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;efficiency(truth)", 50, 0.0, 5.0); 
+    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;efficiency(truth)", 56, -2.8, 2.8); 
+    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;efficiency(truth)", 64,-TMath::Pi(), TMath::Pi()); 
+    hist_trkeff_pt_vtrk   = new TH1F("hist_trkeff_pt_vtrk",  "; pt;efficiency(track)", 50, 0.0, 5.0); 
+    hist_trkeff_eta_vtrk  = new TH1F("hist_trkeff_eta_vtrk", "; eta;efficiencytrack)", 56, -2.8, 2.8); 
+    hist_trkeff_phi_vtrk  = new TH1F("hist_trkeff_phi_vtrk", "; phi;efficiencytrack)", 64,-TMath::Pi(), TMath::Pi()); 
     /* track*/
     hist_trk_nPixHits = new TH1F("hist_trk_nPixHits", ";track nPixHits;", 16, -0.5, 15.5); 
     hist_trk_nGangedPix        = new TH1F("hist_trk_nGangedPix",        ";track nGangedPixel;",   8, -0.5,  7.5); 
@@ -184,12 +190,15 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trktrue_num); 
     ListTH1F.push_back(hist_truth_num); 
     ListTH1F.push_back(hist_trk_pt);  
+    ListTH1F.push_back(hist_trk_pt_loose);  
     ListTH1F.push_back(hist_true_pt);  
     ListTH1F.push_back(hist_truepass_pt);  
     ListTH1F.push_back(hist_trk_eta); 
+    ListTH1F.push_back(hist_trk_eta_loose); 
     ListTH1F.push_back(hist_true_eta);  
     ListTH1F.push_back(hist_truepass_eta);  
     ListTH1F.push_back(hist_trk_phi); 
+    ListTH1F.push_back(hist_trk_phi_loose); 
     ListTH1F.push_back(hist_true_phi);  
     ListTH1F.push_back(hist_truepass_phi);  
     ListTH1F.push_back(hist_trk_qoverp);  
@@ -212,6 +221,9 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trkeff_pt); 
     ListTH1F.push_back(hist_trkeff_phi); 
     ListTH1F.push_back(hist_trkeff_eta); 
+    ListTH1F.push_back(hist_trkeff_pt_vtrk); 
+    ListTH1F.push_back(hist_trkeff_phi_vtrk); 
+    ListTH1F.push_back(hist_trkeff_eta_vtrk); 
     //ListTH1F.push_back(hist_trkeff_d0); 
     //ListTH1F.push_back(hist_trkeff_z0); 
     ListTH1F.push_back(hist_trk_nPixHits); 
@@ -327,6 +339,7 @@ Bool_t MySelector::Process(Long64_t entry)
     hist_truth_num->Fill(ntruth); 
 
     for (int i=0; i<ntracks; i++) { //track loop
+        hist_trk_pt->Fill(trackPt[i]);   
         hist_trk_eta->Fill(trackEta[i]);  
         hist_trk_phi->Fill(trackPhi[i]);   
         hist_trk_qoverp->Fill(trackqOverP[i]); 
@@ -371,34 +384,16 @@ Bool_t MySelector::Process(Long64_t entry)
         hist_trk_dz0->Fill(trackZ0[i]-truez0[i]/truez0[i]);
         /*efficiency*/
 	// Loose track selection
-	//bool selected = false;
-	//if (trackPt[i] > 0.4 && TMath::Abs((trackEta)[i])<=2.5  
-        //                     && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
-        //                     && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
-        //                     && trackNPixelHoles[i]<=1 
-        //                     && (trackNPixelHoles[i]+trackNSCTHoles[i])<=2 ) { selected=true; }
-	//if (!selected) { continue; }
-        hist_trk_pt->Fill(trackPt[i]);   
-	//double dPhi = 0.;
-	//double dEta = 0.;
-	//double dR = 0.;
-	//for (int j=0; j<ntrackstrue; j++) { //true loop
-        //        dPhi = trackPhi[i]-truePhi[j];
-        //        dEta = trackEta[i]-trueEta[j];
-        //        dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
-	//	hist_trk_dr->Fill(dR);
-	//	hist_true_pt->Fill(truePt[j]);
-	//	if (dR <= 0.02) {
-	//		hist_truepass_pt->Fill(truePt[j]);
-        //                //std::cout << "trackPt[" << i << "] = " << truePt[i] << std::endl;
-        //                //std::cout << "truePt[" << j << "] = " << truePt[j] << std::endl;
-	//		//hist_trkeff_pt = hist_truepass_pt/hist_true_pt;
-	//	}
-	//}
-	//hist_trkeff_phi->Fill(trackPhi[i]/truePhi[i]);
-	//hist_trkeff_eta->Fill(trackEta[i]/trueEta[i]);
-	//hist_trkeff_d0->Fill(trackD0[i]/trued0[i]);
-	//hist_trkeff_z0->Fill(trackZ0[i]/truez0[i]);
+	bool selected = false;
+	if (trackPt[i] > 0.4 && TMath::Abs((trackEta)[i])<=2.5  
+                             && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
+                             && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
+                             && trackNPixelHoles[i]<=1 
+                             && (trackNPixelHoles[i]+trackNSCTHoles[i])<=2 ) { selected=true; }
+	if (!selected) { continue; }
+        hist_trk_pt_loose->Fill(trackPt[i]);   
+        hist_trk_eta_loose->Fill(trackEta[i]);  
+        hist_trk_phi_loose->Fill(trackPhi[i]);   
 
 
     int nhits = (int)(hitLayer[i]).size();
@@ -484,16 +479,20 @@ Bool_t MySelector::Process(Long64_t entry)
 		    dEta = trackEta[i]-trueEta[j];
 		    dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
 		    hist_trk_dr->Fill(dR);
-		    if (dR <= 0.02) {
+		    if (dR <= 0.002 && truthmatchprob[j] > 0.95) {
 			    hist_truepass_pt->Fill(truePt[j]);
 			    hist_truepass_eta->Fill(trueEta[j]);
 			    hist_truepass_phi->Fill(truePhi[j]);
 		    }
 	    }
     }
+
     hist_trkeff_pt->Divide(hist_truepass_pt,hist_true_pt,1,1);
     hist_trkeff_eta->Divide(hist_truepass_eta,hist_true_eta,1,1);
     hist_trkeff_phi->Divide(hist_truepass_phi,hist_true_phi,1,1);
+    hist_trkeff_pt_vtrk->Divide(hist_truepass_pt,hist_trk_pt_loose,1,1);
+    hist_trkeff_eta_vtrk->Divide(hist_truepass_eta,hist_trk_eta_loose,1,1);
+    hist_trkeff_phi_vtrk->Divide(hist_truepass_phi,hist_trk_phi_loose,1,1);
     return kTRUE;
 }
 
