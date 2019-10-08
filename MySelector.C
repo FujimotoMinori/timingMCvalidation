@@ -54,14 +54,17 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_truth_num = new TH1F("hist_truth_num",";truth number ;", 200,  0.0, 1000.0); 
     hist_trk_pt  = new TH1F("hist_trk_pt",";track pt ;",  20,  0.0, 20.0); //200
     hist_trk_pt_loose  = new TH1F("hist_trk_pt_loose",";track pt (passed loose selection);",  50,  0.0, 5.0); 
+    hist_truepass_pt_loose  = new TH1F("hist_truepass_pt_loose",";truepass track pt ;",  50,  0.0, 5.0); 
     hist_true_pt  = new TH1F("hist_true_pt",";truetrack pt ;",  50,  0.0, 5.0); 
     hist_truepass_pt  = new TH1F("hist_truepass_pt",";truepass pt ;",  50,  0.0, 5.0); 
     hist_trk_eta = new TH1F("hist_trk_eta",";track eta;",  56, -2.8, 2.8); 
     hist_trk_eta_loose = new TH1F("hist_trk_eta_loose",";track eta (passed loose selection);",  56, -2.8, 2.8); 
+    hist_truepass_eta_loose = new TH1F("hist_truepass_eta_loose",";truepass track eta ;",  56, -2.8, 2.8); 
     hist_true_eta = new TH1F("hist_true_eta",";true eta;",  56, -2.8, 2.8); 
     hist_truepass_eta  = new TH1F("hist_truepass_eta",";truepass eta ;",  56, -2.8, 2.8); 
     hist_trk_phi = new TH1F("hist_trk_phi",";track phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_trk_phi_loose = new TH1F("hist_trk_phi_loose",";track phi (passed loose selection) ;",  64,  -TMath::Pi(), TMath::Pi()); 
+    hist_truepass_phi_loose = new TH1F("hist_truepass_phi_loose",";truepass track  phi ;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_true_phi = new TH1F("hist_true_phi",";true phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_truepass_phi = new TH1F("hist_truepass_phi",";truepass phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_trk_qoverp = new TH1F("hist_trk_qoverp", ";track q/P;", 200,  -2e-3,  2e-3); 
@@ -84,12 +87,12 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trk_dz0   = new TH1F("hist_trk_dz0",  "; dz0;", 100, -5.0, 5.0); 
     /*efficiency*/
     hist_trk_dr   = new TH1F("hist_trk_dr",  "; dr;", 500, 0.0, 0.5); 
-    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;efficiency(truth)", 50, 0.0, 5.0); 
-    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;efficiency(truth)", 56, -2.8, 2.8); 
-    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;efficiency(truth)", 64,-TMath::Pi(), TMath::Pi()); 
-    hist_trkeff_pt_vtrk   = new TH1F("hist_trkeff_pt_vtrk",  "; pt;efficiency(track)", 50, 0.0, 5.0); 
-    hist_trkeff_eta_vtrk  = new TH1F("hist_trkeff_eta_vtrk", "; eta;efficiencytrack)", 56, -2.8, 2.8); 
-    hist_trkeff_phi_vtrk  = new TH1F("hist_trkeff_phi_vtrk", "; phi;efficiencytrack)", 64,-TMath::Pi(), TMath::Pi()); 
+    hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;efficiency (truth)", 50, 0.0, 5.0); 
+    hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;efficiency (truth)", 56, -2.8, 2.8); 
+    hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;efficiency (truth)", 64,-TMath::Pi(), TMath::Pi()); 
+    hist_trkeff_pt_vtrk   = new TH1F("hist_trkeff_pt_vtrk",  "; pt;efficiency (track)", 50, 0.0, 5.0); 
+    hist_trkeff_eta_vtrk  = new TH1F("hist_trkeff_eta_vtrk", "; eta;efficiency (track)", 56, -2.8, 2.8); 
+    hist_trkeff_phi_vtrk  = new TH1F("hist_trkeff_phi_vtrk", "; phi;efficiency (track)", 64,-TMath::Pi(), TMath::Pi()); 
     /* track*/
     hist_trk_nPixHits = new TH1F("hist_trk_nPixHits", ";track nPixHits;", 16, -0.5, 15.5); 
     hist_trk_nGangedPix        = new TH1F("hist_trk_nGangedPix",        ";track nGangedPixel;",   8, -0.5,  7.5); 
@@ -193,14 +196,17 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trk_pt_loose);  
     ListTH1F.push_back(hist_true_pt);  
     ListTH1F.push_back(hist_truepass_pt);  
+    ListTH1F.push_back(hist_truepass_pt_loose);  
     ListTH1F.push_back(hist_trk_eta); 
     ListTH1F.push_back(hist_trk_eta_loose); 
     ListTH1F.push_back(hist_true_eta);  
     ListTH1F.push_back(hist_truepass_eta);  
+    ListTH1F.push_back(hist_truepass_eta_loose);  
     ListTH1F.push_back(hist_trk_phi); 
     ListTH1F.push_back(hist_trk_phi_loose); 
     ListTH1F.push_back(hist_true_phi);  
     ListTH1F.push_back(hist_truepass_phi);  
+    ListTH1F.push_back(hist_truepass_phi_loose);  
     ListTH1F.push_back(hist_trk_qoverp);  
     ListTH1F.push_back(hist_trk_d0);      
     ListTH1F.push_back(hist_trk_z0);      
@@ -394,6 +400,19 @@ Bool_t MySelector::Process(Long64_t entry)
         hist_trk_pt_loose->Fill(trackPt[i]);   
         hist_trk_eta_loose->Fill(trackEta[i]);  
         hist_trk_phi_loose->Fill(trackPhi[i]);   
+	for (int j=0; j<ntrackstrue; j++) { //true loop
+		double dPhi = 0.;
+		double dEta = 0.;
+		double dR = 0.;
+		dPhi = trackPhi[i]-truePhi[j];
+		dEta = trackEta[i]-trueEta[j];
+		dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
+		if (dR <= 0.002 && truthmatchprob[i] > 0.95) {
+			hist_truepass_pt_loose->Fill(trackPt[i]);
+			hist_truepass_eta_loose->Fill(trackEta[i]);
+			hist_truepass_phi_loose->Fill(trackPhi[i]);
+		}
+	    }
 
 
     int nhits = (int)(hitLayer[i]).size();
@@ -479,7 +498,7 @@ Bool_t MySelector::Process(Long64_t entry)
 		    dEta = trackEta[i]-trueEta[j];
 		    dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
 		    hist_trk_dr->Fill(dR);
-		    if (dR <= 0.002 && truthmatchprob[j] > 0.95) {
+		    if (dR <= 0.002 && truthmatchprob[i] > 0.95) {
 			    hist_truepass_pt->Fill(truePt[j]);
 			    hist_truepass_eta->Fill(trueEta[j]);
 			    hist_truepass_phi->Fill(truePhi[j]);
@@ -490,9 +509,9 @@ Bool_t MySelector::Process(Long64_t entry)
     hist_trkeff_pt->Divide(hist_truepass_pt,hist_true_pt,1,1);
     hist_trkeff_eta->Divide(hist_truepass_eta,hist_true_eta,1,1);
     hist_trkeff_phi->Divide(hist_truepass_phi,hist_true_phi,1,1);
-    hist_trkeff_pt_vtrk->Divide(hist_truepass_pt,hist_trk_pt_loose,1,1);
-    hist_trkeff_eta_vtrk->Divide(hist_truepass_eta,hist_trk_eta_loose,1,1);
-    hist_trkeff_phi_vtrk->Divide(hist_truepass_phi,hist_trk_phi_loose,1,1);
+    hist_trkeff_pt_vtrk->Divide(hist_truepass_pt_loose,hist_trk_pt_loose,1,1);
+    hist_trkeff_eta_vtrk->Divide(hist_truepass_eta_loose,hist_trk_eta_loose,1,1);
+    hist_trkeff_phi_vtrk->Divide(hist_truepass_phi_loose,hist_trk_phi_loose,1,1);
     return kTRUE;
 }
 
