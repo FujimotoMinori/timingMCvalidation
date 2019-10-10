@@ -291,6 +291,8 @@ public :
    TH1F* hist_trk_eta; 
    TH1F* hist_true_eta;  
    TH1F* hist_truepass_eta;  
+   TH1F* hist_true_numVtx;  
+   TH1F* hist_truepass_numVtx;  
    TH1F* hist_hitpass_eta;  
    TH1F* hist_trk_qoverp;  
    TH1F* hist_trk_d0;      
@@ -314,6 +316,7 @@ public :
    TH1F* hist_trkeff_pt;
    TH1F* hist_trkeff_phi; 
    TH1F* hist_trkeff_eta; 
+   TH1F* hist_trkeff_numVtx; 
    //TH1F* hist_hiteff_pt;
    //TH1F* hist_hiteff_phi; 
    //TH1F* hist_hiteff_eta; 
@@ -348,6 +351,15 @@ public :
    TH1F* hist_IBL_MapHitEtaeff; 
    TH1F* hist_IBL_MapHitPt; 
    TH1F* hist_IBL_MapHitPteff; 
+   TH1F* hist_numVtx;             
+   TH1F* hist_IBL_MapHitnumVtxeff;
+   TH1F* hist_BLY_MapHitnumVtxeff;
+   TH1F* hist_LY1_MapHitnumVtxeff;
+   TH1F* hist_LY2_MapHitnumVtxeff;
+   TH1F* hist_IBL_MapHitnumVtx;   
+   TH1F* hist_BLY_MapHitnumVtx;   
+   TH1F* hist_LY1_MapHitnumVtx;   
+   TH1F* hist_LY2_MapHitnumVtx;   
 
    //TH1F* hist_trk_truthMatchProb  ;
    TH1F* hist_BLY_IsEdge; 
