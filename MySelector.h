@@ -281,20 +281,17 @@ public :
    TH1F* hist_trktrue_num; 
    TH1F* hist_truth_num; 
    TH1F* hist_trk_pt;  
-   TH1F* hist_trk_pt_loose;  
    TH1F* hist_true_pt;  
    TH1F* hist_truepass_pt;  
-   TH1F* hist_truepass_pt_loose;  
+   TH1F* hist_trkpass_pt;  
    TH1F* hist_trk_phi; 
-   TH1F* hist_trk_phi_loose; 
    TH1F* hist_true_phi;  
    TH1F* hist_truepass_phi;  
-   TH1F* hist_truepass_phi_loose;  
+   TH1F* hist_hitpass_phi;  
    TH1F* hist_trk_eta; 
-   TH1F* hist_trk_eta_loose; 
    TH1F* hist_true_eta;  
    TH1F* hist_truepass_eta;  
-   TH1F* hist_truepass_eta_loose;  
+   TH1F* hist_hitpass_eta;  
    TH1F* hist_trk_qoverp;  
    TH1F* hist_trk_d0;      
    TH1F* hist_trk_z0;      
@@ -317,9 +314,9 @@ public :
    TH1F* hist_trkeff_pt;
    TH1F* hist_trkeff_phi; 
    TH1F* hist_trkeff_eta; 
-   TH1F* hist_trkeff_pt_vtrk;
-   TH1F* hist_trkeff_phi_vtrk; 
-   TH1F* hist_trkeff_eta_vtrk; 
+   //TH1F* hist_hiteff_pt;
+   //TH1F* hist_hiteff_phi; 
+   //TH1F* hist_hiteff_eta; 
    //TH1F* hist_trkeff_d0; 
    //TH1F* hist_trkeff_z0; 
 
@@ -347,6 +344,10 @@ public :
    TH1F* h_trackNL2Hits;         
    TH1F* h_trackNIBLExpectedHits;
    TH1F* h_trackNBLExpectedHits; 
+   TH1F* hist_IBL_MapHitEta; 
+   TH1F* hist_IBL_MapHitEtaeff; 
+   TH1F* hist_IBL_MapHitPt; 
+   TH1F* hist_IBL_MapHitPteff; 
 
    //TH1F* hist_trk_truthMatchProb  ;
    TH1F* hist_BLY_IsEdge; 
@@ -355,6 +356,10 @@ public :
    TH1F* hist_BLY_L1A;
    TH1F* hist_BLY_ToT; 
    TH1F* hist_BLY_Charge; 
+   TH1F* hist_BLY_MapHitEta; 
+   TH1F* hist_BLY_MapHitEtaeff; 
+   TH1F* hist_BLY_MapHitPt; 
+   TH1F* hist_BLY_MapHitPteff; 
    //TH1F* hist_BLY_dEdx            ; 
    TH1F* hist_BLY_HitSize           ; 
    TH1F* hist_BLY_HitSizePhi        ; 
@@ -371,6 +376,10 @@ public :
    TH1F* hist_LY1_L1A               ;
    TH1F* hist_LY1_ToT               ; 
    TH1F* hist_LY1_Charge            ; 
+   TH1F* hist_LY1_MapHitEta; 
+   TH1F* hist_LY1_MapHitEtaeff; 
+   TH1F* hist_LY1_MapHitPt; 
+   TH1F* hist_LY1_MapHitPteff; 
    //TH1F* hist_LY1_dEdx            ; 
    TH1F* hist_LY1_HitSize           ;
    TH1F* hist_LY1_HitSizePhi        ;
@@ -387,6 +396,10 @@ public :
    TH1F* hist_LY2_L1A               ;
    TH1F* hist_LY2_ToT               ; 
    TH1F* hist_LY2_Charge            ; 
+   TH1F* hist_LY2_MapHitEta; 
+   TH1F* hist_LY2_MapHitEtaeff; 
+   TH1F* hist_LY2_MapHitPt; 
+   TH1F* hist_LY2_MapHitPteff; 
    //TH1F* hist_LY2_dEdx            ; 
    TH1F* hist_LY2_HitSize           ; 
    TH1F* hist_LY2_HitSizePhi        ; 
