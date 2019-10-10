@@ -63,7 +63,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_truepass_phi = new TH1F("hist_truepass_phi",";truepass phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_true_numVtx = new TH1F("hist_true_numVtx",";true numVtx;",  50,  -0.5, 49.5); 
     hist_truepass_numVtx = new TH1F("hist_truepass_numVtx",";truepass numVtx;",  50,  -0.5, 49.5); 
-    hist_true_avePU = new TH1F("hist_true_avePU",";true avePU;",  50,  0.5, 100.); 
+    hist_true_avePU = new TH1F("hist_true_avePU",";true avePU;",  50,  0.0, 100.); 
     hist_truepass_avePU = new TH1F("hist_truepass_avePU",";truepass avePU;",  50,  0.0, 100.); 
     hist_trk_qoverp = new TH1F("hist_trk_qoverp", ";track q/P;", 200,  -2e-3,  2e-3); 
     hist_trk_d0     = new TH1F("hist_trk_d0",     ";track d0;", 100,   -0.2,   0.2); 
@@ -258,7 +258,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trk_dphi); 
     ListTH1F.push_back(hist_trk_deta); 
     ListTH1F.push_back(hist_trk_dd0); 
-    ListTH1F.push_back(hist_trk_dz0); 
+    8istTH1F.push_back(hist_trk_dz0); 
     ListTH1F.push_back(hist_trk_dr); 
     ListTH1F.push_back(hist_trkeff_pt); 
     ListTH1F.push_back(hist_trkeff_phi); 
@@ -492,7 +492,9 @@ Bool_t MySelector::Process(Long64_t entry)
         //==================
         // Efficiency check
         //==================
-        if ((trackPt)[i]>2.0 && TMath::Abs((trackEta)[i])<=1.8 /*&& TMath::Abs((trackDeltaZSinTheta)[i])<3.0 */&& (nPixelDeadSensors)[i]==0) {
+        if ((trackPt)[i]>2.0 && TMath::Abs((trackEta)[i])<=1.8 /*&& TMath::Abs((trackDeltaZSinTheta)[i])<3.0 && (nPixelDeadSensors)[i]==0*/) {
+            if(TMath::Abs(trackZ0[i]) >100 && TMath::Abs(trackD0[i] < 0.15){
+
             // IBL hit efficiency
             if ((trackNBLHits)[i]>0 && (trackNL1Hits)[i]>0 && (trackNL2Hits)[i]>0) {
                 hist_IBL_MapEta    -> Fill((trackEta)[i]/*,histWeight*/);
@@ -511,7 +513,7 @@ Bool_t MySelector::Process(Long64_t entry)
             if ((trackNIBLHits)[i]>0 && (trackNL1Hits)[i]>0 && (trackNL2Hits)[i]>0) {
                 hist_BLY_MapEta      -> Fill((trackEta)[i]/*,histWeight*/);
                 hist_BLY_MapPt      -> Fill((trackPt)[i]/*,histWeight*/);
-                hist_BLY_MapnumVtx      -> Fill((*numVtx)[i]/*,histWeight*/);
+                hist_BLY_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
                 hist_BLY_MapavePU -> Fill(*averagePU/*,histWeight*/);
                 if ((trackNBLHits)[i]>0) {
                     hist_BLY_MapHitEta -> Fill((trackEta)[i]/*,histWeight*/);
@@ -549,7 +551,9 @@ Bool_t MySelector::Process(Long64_t entry)
                 }
             }
 
-        }
+	    }
+}
+	}
 
 
 
@@ -616,7 +620,7 @@ Bool_t MySelector::Process(Long64_t entry)
 
     for (int j=0; j<ntrackstrue; j++) { //true loop
         if (truePt[j] > 2.0) hist_true_eta->Fill(trueEta[j]);
-        if (trueEta[j] < 2.5) hist_true_Pt->Fill(truePt[j]);
+        if (trueEta[j] < 2.5) hist_true_pt->Fill(truePt[j]);
 
         if (truePt[j] <= 2.0 || TMath::Abs(trueEta[j]) > 2.5) continue;
         hist_true_phi->Fill(truePhi[j]);
