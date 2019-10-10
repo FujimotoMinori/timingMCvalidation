@@ -293,6 +293,8 @@ public :
    TH1F* hist_truepass_eta;  
    TH1F* hist_true_numVtx;  
    TH1F* hist_truepass_numVtx;  
+   TH1F* hist_true_avePU;  
+   TH1F* hist_truepass_avePU;  
    TH1F* hist_hitpass_eta;  
    TH1F* hist_trk_qoverp;  
    TH1F* hist_trk_d0;      
@@ -305,6 +307,7 @@ public :
    TH1F* h_trackMindR;
    TH1F* h_trackClass;
    TH1F* h_trackPassCut;
+   TH1F* hist_numVtx;             
 
    TH1F* hist_trk_dpt;
    TH1F* hist_trk_dphi; 
@@ -317,11 +320,7 @@ public :
    TH1F* hist_trkeff_phi; 
    TH1F* hist_trkeff_eta; 
    TH1F* hist_trkeff_numVtx; 
-   //TH1F* hist_hiteff_pt;
-   //TH1F* hist_hiteff_phi; 
-   //TH1F* hist_hiteff_eta; 
-   //TH1F* hist_trkeff_d0; 
-   //TH1F* hist_trkeff_z0; 
+   TH1F* hist_trkeff_avePU; 
 
    TH1F* hist_trk_nPixHits; 
    TH1F* hist_trk_nGangedPix; 
@@ -347,11 +346,12 @@ public :
    TH1F* h_trackNL2Hits;         
    TH1F* h_trackNIBLExpectedHits;
    TH1F* h_trackNBLExpectedHits; 
-   TH1F* hist_IBL_MapHitEta; 
    TH1F* hist_IBL_MapHitEtaeff; 
-   TH1F* hist_IBL_MapHitPt; 
+   TH1F* hist_IBL_MapHitEta; 
+   TH1F* hist_IBL_MapEta; 
    TH1F* hist_IBL_MapHitPteff; 
-   TH1F* hist_numVtx;             
+   TH1F* hist_IBL_MapHitPt; 
+   TH1F* hist_IBL_MapPt; 
    TH1F* hist_IBL_MapHitnumVtxeff;
    TH1F* hist_BLY_MapHitnumVtxeff;
    TH1F* hist_LY1_MapHitnumVtxeff;
@@ -360,6 +360,22 @@ public :
    TH1F* hist_BLY_MapHitnumVtx;   
    TH1F* hist_LY1_MapHitnumVtx;   
    TH1F* hist_LY2_MapHitnumVtx;   
+   TH1F* hist_IBL_MapnumVtx;   
+   TH1F* hist_BLY_MapnumVtx;   
+   TH1F* hist_LY1_MapnumVtx;   
+   TH1F* hist_LY2_MapnumVtx;   
+   TH1F* hist_IBL_MapHitavePUeff;
+   TH1F* hist_BLY_MapHitavePUeff;
+   TH1F* hist_LY1_MapHitavePUeff;
+   TH1F* hist_LY2_MapHitavePUeff;
+   TH1F* hist_IBL_MapHitavePU;   
+   TH1F* hist_BLY_MapHitavePU;   
+   TH1F* hist_LY1_MapHitavePU;   
+   TH1F* hist_LY2_MapHitavePU;   
+   TH1F* hist_IBL_MapavePU;   
+   TH1F* hist_BLY_MapavePU;   
+   TH1F* hist_LY1_MapavePU;   
+   TH1F* hist_LY2_MapavePU;   
 
    //TH1F* hist_trk_truthMatchProb  ;
    TH1F* hist_BLY_IsEdge; 
@@ -369,8 +385,10 @@ public :
    TH1F* hist_BLY_ToT; 
    TH1F* hist_BLY_Charge; 
    TH1F* hist_BLY_MapHitEta; 
+   TH1F* hist_BLY_MapEta; 
    TH1F* hist_BLY_MapHitEtaeff; 
    TH1F* hist_BLY_MapHitPt; 
+   TH1F* hist_BLY_MapPt; 
    TH1F* hist_BLY_MapHitPteff; 
    //TH1F* hist_BLY_dEdx            ; 
    TH1F* hist_BLY_HitSize           ; 
@@ -389,8 +407,10 @@ public :
    TH1F* hist_LY1_ToT               ; 
    TH1F* hist_LY1_Charge            ; 
    TH1F* hist_LY1_MapHitEta; 
+   TH1F* hist_LY1_MapEta; 
    TH1F* hist_LY1_MapHitEtaeff; 
    TH1F* hist_LY1_MapHitPt; 
+   TH1F* hist_LY1_MapPt; 
    TH1F* hist_LY1_MapHitPteff; 
    //TH1F* hist_LY1_dEdx            ; 
    TH1F* hist_LY1_HitSize           ;
@@ -409,8 +429,10 @@ public :
    TH1F* hist_LY2_ToT               ; 
    TH1F* hist_LY2_Charge            ; 
    TH1F* hist_LY2_MapHitEta; 
+   TH1F* hist_LY2_MapEta; 
    TH1F* hist_LY2_MapHitEtaeff; 
    TH1F* hist_LY2_MapHitPt; 
+   TH1F* hist_LY2_MapPt; 
    TH1F* hist_LY2_MapHitPteff; 
    //TH1F* hist_LY2_dEdx            ; 
    TH1F* hist_LY2_HitSize           ; 
