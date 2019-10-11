@@ -61,8 +61,8 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trk_phi = new TH1F("hist_trk_phi",";track phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_true_phi = new TH1F("hist_true_phi",";true phi;",  64,  -TMath::Pi(), TMath::Pi()); 
     hist_truepass_phi = new TH1F("hist_truepass_phi",";truepass phi;",  64,  -TMath::Pi(), TMath::Pi()); 
-    hist_true_numVtx = new TH1F("hist_true_numVtx",";true numVtx;",  50,  -0.5, 49.5); 
-    hist_truepass_numVtx = new TH1F("hist_truepass_numVtx",";truepass numVtx;",  50,  -0.5, 49.5); 
+    //hist_true_numVtx = new TH1F("hist_true_numVtx",";true numVtx;",  50,  -0.5, 49.5); 
+    //hist_truepass_numVtx = new TH1F("hist_truepass_numVtx",";truepass numVtx;",  50,  -0.5, 49.5); 
     hist_true_avePU = new TH1F("hist_true_avePU",";true avePU;",  50,  0.0, 100.); 
     hist_truepass_avePU = new TH1F("hist_truepass_avePU",";truepass avePU;",  50,  0.0, 100.); 
     hist_trk_qoverp = new TH1F("hist_trk_qoverp", ";track q/P;", 200,  -2e-3,  2e-3); 
@@ -89,10 +89,10 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trkeff_pt   = new TH1F("hist_trkeff_pt",  "; pt;tracking efficiency ", 50, 0.0, 5.0); 
     hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;tracking efficiency ", 56, -2.8, 2.8); 
     hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;tracking efficiency ", 64,-TMath::Pi(), TMath::Pi()); 
-    hist_trkeff_numVtx  = new TH1F("hist_trkeff_numVtx", "; numVtx;tracking efficiency ", 50,-0.5, 49.5); 
+    //hist_trkeff_numVtx  = new TH1F("hist_trkeff_numVtx", "; numVtx;tracking efficiency ", 50,-0.5, 49.5); 
     hist_trkeff_avePU  = new TH1F("hist_trkeff_avePU", "; avePU;tracking efficiency ", 50,0.0, 100.); 
 
-    hist_IBL_MapHitEtaeff         = new TH1F("hist_IBL_MapHitEtaeff",    ";eta;hit efficiency(IBl)", 56, -2.8, 2.8);
+    hist_IBL_MapHitEtaeff         = new TH1F("hist_IBL_MapHitEtaeff",    ";eta;hit efficiency(IBL)", 56, -2.8, 2.8);
     hist_BLY_MapHitEtaeff         = new TH1F("hist_BLY_MapHitEtaeff",    ";eta;hit efficiency(blayer)", 56, -2.8, 2.8);
     hist_LY1_MapHitEtaeff         = new TH1F("hist_LY1_MapHitEtaeff",    ";eta;hit efficiency(L1)", 56, -2.8, 2.8);
     hist_LY2_MapHitEtaeff         = new TH1F("hist_LY2_MapHitEtaeff",    ";eta;hit efficiency(L2)", 56, -2.8, 2.8);
@@ -105,7 +105,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_LY1_MapEta         = new TH1F("hist_LY1_MapEta",    ";eta(L1);",  56, -2.8, 2.8);
     hist_LY2_MapEta         = new TH1F("hist_LY2_MapEta",    ";eta(L2);",  56, -2.8, 2.8);
 
-    hist_IBL_MapHitPteff         = new TH1F("hist_IBL_MapHitPteff",    ";Pt;hit efficiency(IBl)", 50, 0.0, 5.0);
+    hist_IBL_MapHitPteff         = new TH1F("hist_IBL_MapHitPteff",    ";Pt;hit efficiency(IBL)", 50, 0.0, 5.0);
     hist_BLY_MapHitPteff         = new TH1F("hist_BLY_MapHitPteff",    ";Pt;hit efficiency(blayer)", 50, 0.0, 5.0);
     hist_LY1_MapHitPteff         = new TH1F("hist_LY1_MapHitPteff",    ";Pt;hit efficiency(L1)", 50, 0.0, 5.0);
     hist_LY2_MapHitPteff         = new TH1F("hist_LY2_MapHitPteff",    ";Pt;hit efficiency(L2)", 50, 0.0, 5.0);
@@ -118,27 +118,27 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_LY1_MapPt         = new TH1F("hist_LY1_MapPt",    ";Pt(L1);", 50, 0.0, 5.0);
     hist_LY2_MapPt         = new TH1F("hist_LY2_MapPt",    ";Pt(L2);", 50, 0.0, 5.0);
 
-    hist_IBL_MapHitnumVtxeff         = new TH1F("hist_IBL_MapHitnumVtxeff",    ";numVtx;hit efficiency(IBl)", 50, -0.5, 49.5);
-    hist_BLY_MapHitnumVtxeff         = new TH1F("hist_BLY_MapHitnumVtxeff",    ";numVtx;hit efficiency(blayer)", 50, -0.5, 49.5);
-    hist_LY1_MapHitnumVtxeff         = new TH1F("hist_LY1_MapHitnumVtxeff",    ";numVtx;hit efficiency(L1)", 50, -0.5, 49.5);
-    hist_LY2_MapHitnumVtxeff         = new TH1F("hist_LY2_MapHitnumVtxeff",    ";numVtx;hit efficiency(L2)", 50, -0.5, 49.5);
-    hist_IBL_MapHitnumVtx            = new TH1F("hist_IBL_MapHitnumVtx",    ";numVtx(IBL);", 50, -0.5, 49.5);
-    hist_BLY_MapHitnumVtx            = new TH1F("hist_BLY_MapHitnumVtx",    ";numVtx(blayer);", 50, -0.5, 49.5);
-    hist_LY1_MapHitnumVtx            = new TH1F("hist_LY1_MapHitnumVtx",    ";numVtx(L1);", 50, -0.5, 49.5);
-    hist_LY2_MapHitnumVtx            = new TH1F("hist_LY2_MapHitnumVtx",    ";numVtx(L2);", 50, -0.5, 49.5);
-    hist_IBL_MapnumVtx            = new TH1F("hist_IBL_MapnumVtx",    ";numVtx(IBL);", 50, -0.5, 49.5);
-    hist_BLY_MapnumVtx            = new TH1F("hist_BLY_MapnumVtx",    ";numVtx(blayer);", 50, -0.5, 49.5);
-    hist_LY1_MapnumVtx            = new TH1F("hist_LY1_MapnumVtx",    ";numVtx(L1);", 50, -0.5, 49.5);
-    hist_LY2_MapnumVtx            = new TH1F("hist_LY2_MapnumVtx",    ";numVtx(L2);", 50, -0.5, 49.5);
+    //hist_IBL_MapHitnumVtxeff         = new TH1F("hist_IBL_MapHitnumVtxeff",    ";numVtx;hit efficiency(IBL)", 50, -0.5, 49.5);
+    //hist_BLY_MapHitnumVtxeff         = new TH1F("hist_BLY_MapHitnumVtxeff",    ";numVtx;hit efficiency(blayer)", 50, -0.5, 49.5);
+    //hist_LY1_MapHitnumVtxeff         = new TH1F("hist_LY1_MapHitnumVtxeff",    ";numVtx;hit efficiency(L1)", 50, -0.5, 49.5);
+    //hist_LY2_MapHitnumVtxeff         = new TH1F("hist_LY2_MapHitnumVtxeff",    ";numVtx;hit efficiency(L2)", 50, -0.5, 49.5);
+    //hist_IBL_MapHitnumVtx            = new TH1F("hist_IBL_MapHitnumVtx",    ";numVtx(IBL);", 50, -0.5, 49.5);
+    //hist_BLY_MapHitnumVtx            = new TH1F("hist_BLY_MapHitnumVtx",    ";numVtx(blayer);", 50, -0.5, 49.5);
+    //hist_LY1_MapHitnumVtx            = new TH1F("hist_LY1_MapHitnumVtx",    ";numVtx(L1);", 50, -0.5, 49.5);
+    //hist_LY2_MapHitnumVtx            = new TH1F("hist_LY2_MapHitnumVtx",    ";numVtx(L2);", 50, -0.5, 49.5);
+    //hist_IBL_MapnumVtx            = new TH1F("hist_IBL_MapnumVtx",    ";numVtx(IBL);", 50, -0.5, 49.5);
+    //hist_BLY_MapnumVtx            = new TH1F("hist_BLY_MapnumVtx",    ";numVtx(blayer);", 50, -0.5, 49.5);
+    //hist_LY1_MapnumVtx            = new TH1F("hist_LY1_MapnumVtx",    ";numVtx(L1);", 50, -0.5, 49.5);
+    //hist_LY2_MapnumVtx            = new TH1F("hist_LY2_MapnumVtx",    ";numVtx(L2);", 50, -0.5, 49.5);
 
-    hist_IBL_MapHitavePUeff         = new TH1F("hist_IBL_MapHitavePUeff",    ";averagePU;hit efficiency(IBl)", 50, 0.0, 100.);
+    hist_IBL_MapHitavePUeff         = new TH1F("hist_IBL_MapHitavePUeff",    ";averagePU;hit efficiency(IBL)", 50, 0.0, 100.);
     hist_BLY_MapHitavePUeff         = new TH1F("hist_BLY_MapHitavePUeff",    ";averagePU;hit efficiency(blayer)", 50, 0.0, 100.);
     hist_LY1_MapHitavePUeff         = new TH1F("hist_LY1_MapHitavePUeff",    ";averagePU;hit efficiency(L1)", 50, 0.0, 100.);
     hist_LY2_MapHitavePUeff         = new TH1F("hist_LY2_MapHitavePUeff",    ";averagePU;hit efficiency(L2)", 50, 0.0, 100.);
-    hist_IBL_MapHitavePU            = new TH1F("hist_IBL_MapHitavePU"   ,    ";averagePU(IBL);", 50, 0.0, 100.);
-    hist_BLY_MapHitavePU            = new TH1F("hist_BLY_MapHitavePU"   ,    ";averagePU(blayer);", 50, 0.0, 100.);
-    hist_LY1_MapHitavePU            = new TH1F("hist_LY1_MapHitavePU"   ,    ";averagePU(L1);", 50, 0.0, 100.);
-    hist_LY2_MapHitavePU            = new TH1F("hist_LY2_MapHitavePU"   ,    ";averagePU(L2);", 50, 0.0, 100.);
+    hist_IBL_MapHitavePU            = new TH1F("hist_IBL_MapHitavePU"   ,    ";averagePUpassed(IBL);", 50, 0.0, 100.);
+    hist_BLY_MapHitavePU            = new TH1F("hist_BLY_MapHitavePU"   ,    ";averagePUpassed(blayer);", 50, 0.0, 100.);
+    hist_LY1_MapHitavePU            = new TH1F("hist_LY1_MapHitavePU"   ,    ";averagePUpassed(L1);", 50, 0.0, 100.);
+    hist_LY2_MapHitavePU            = new TH1F("hist_LY2_MapHitavePU"   ,    ";averagePUpassed(L2);", 50, 0.0, 100.);
     hist_IBL_MapavePU            = new TH1F("hist_IBL_MapavePU"         ,    ";averagePU(IBL);", 50, 0.0, 100.);
     hist_BLY_MapavePU            = new TH1F("hist_BLY_MapavePU"         ,    ";averagePU(blayer);", 50, 0.0, 100.);
     hist_LY1_MapavePU            = new TH1F("hist_LY1_MapavePU"         ,    ";averagePU(L1);", 50, 0.0, 100.);
@@ -239,8 +239,8 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trk_phi); 
     ListTH1F.push_back(hist_true_phi);  
     ListTH1F.push_back(hist_truepass_phi);  
-    ListTH1F.push_back(hist_true_numVtx);  
-    ListTH1F.push_back(hist_truepass_numVtx);  
+    //ListTH1F.push_back(hist_true_numVtx);  
+    //ListTH1F.push_back(hist_truepass_numVtx);  
     ListTH1F.push_back(hist_true_avePU);  
     ListTH1F.push_back(hist_truepass_avePU);  
     ListTH1F.push_back(hist_trk_qoverp);  
@@ -258,12 +258,12 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_trk_dphi); 
     ListTH1F.push_back(hist_trk_deta); 
     ListTH1F.push_back(hist_trk_dd0); 
-    8istTH1F.push_back(hist_trk_dz0); 
+    ListTH1F.push_back(hist_trk_dz0); 
     ListTH1F.push_back(hist_trk_dr); 
     ListTH1F.push_back(hist_trkeff_pt); 
     ListTH1F.push_back(hist_trkeff_phi); 
     ListTH1F.push_back(hist_trkeff_eta); 
-    ListTH1F.push_back(hist_trkeff_numVtx); 
+    //ListTH1F.push_back(hist_trkeff_numVtx); 
     ListTH1F.push_back(hist_trkeff_avePU); 
     ListTH1F.push_back(hist_trk_nPixHits); 
     ListTH1F.push_back(hist_trk_nGangedPix        ); 
@@ -295,18 +295,18 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     ListTH1F.push_back(hist_IBL_MapHitPt            ); 
     ListTH1F.push_back(hist_IBL_MapPt            ); 
     ListTH1F.push_back(hist_numVtx             ); 
-    ListTH1F.push_back(hist_IBL_MapHitnumVtxeff);
-    ListTH1F.push_back(hist_BLY_MapHitnumVtxeff);
-    ListTH1F.push_back(hist_LY1_MapHitnumVtxeff);
-    ListTH1F.push_back(hist_LY2_MapHitnumVtxeff);
-    ListTH1F.push_back(hist_IBL_MapHitnumVtx   );
-    ListTH1F.push_back(hist_BLY_MapHitnumVtx   );
-    ListTH1F.push_back(hist_LY1_MapHitnumVtx   );
-    ListTH1F.push_back(hist_LY2_MapHitnumVtx   );
-    ListTH1F.push_back(hist_IBL_MapnumVtx   );
-    ListTH1F.push_back(hist_BLY_MapnumVtx   );
-    ListTH1F.push_back(hist_LY1_MapnumVtx   );
-    ListTH1F.push_back(hist_LY2_MapnumVtx   );
+    //ListTH1F.push_back(hist_IBL_MapHitnumVtxeff);
+    //ListTH1F.push_back(hist_BLY_MapHitnumVtxeff);
+    //ListTH1F.push_back(hist_LY1_MapHitnumVtxeff);
+    //ListTH1F.push_back(hist_LY2_MapHitnumVtxeff);
+    //ListTH1F.push_back(hist_IBL_MapHitnumVtx   );
+    //ListTH1F.push_back(hist_BLY_MapHitnumVtx   );
+    //ListTH1F.push_back(hist_LY1_MapHitnumVtx   );
+    //ListTH1F.push_back(hist_LY2_MapHitnumVtx   );
+    //ListTH1F.push_back(hist_IBL_MapnumVtx   );
+    //ListTH1F.push_back(hist_BLY_MapnumVtx   );
+    //ListTH1F.push_back(hist_LY1_MapnumVtx   );
+    //ListTH1F.push_back(hist_LY2_MapnumVtx   );
     ListTH1F.push_back(hist_IBL_MapHitavePUeff);
     ListTH1F.push_back(hist_BLY_MapHitavePUeff);
     ListTH1F.push_back(hist_LY1_MapHitavePUeff);
@@ -492,20 +492,19 @@ Bool_t MySelector::Process(Long64_t entry)
         //==================
         // Efficiency check
         //==================
-        if ((trackPt)[i]>2.0 && TMath::Abs((trackEta)[i])<=1.8 /*&& TMath::Abs((trackDeltaZSinTheta)[i])<3.0 && (nPixelDeadSensors)[i]==0*/) {
-            if(TMath::Abs(trackZ0[i]) >100 && TMath::Abs(trackD0[i] < 0.15){
+        if ((trackPt)[i]>2.0 && TMath::Abs((trackEta)[i])<=1.8 /*&& TMath::Abs((trackDeltaZSinTheta)[i])<3.0*/ && (nPixelDeadSensors)[i]==0) {
+            if(TMath::Abs(trackZ0[i]) < 100 && TMath::Abs(trackD0[i]) < 0.15){
 
             // IBL hit efficiency
             if ((trackNBLHits)[i]>0 && (trackNL1Hits)[i]>0 && (trackNL2Hits)[i]>0) {
                 hist_IBL_MapEta    -> Fill((trackEta)[i]/*,histWeight*/);
                 hist_IBL_MapPt     -> Fill((trackPt)[i]/*,histWeight*/);
-                hist_IBL_MapnumVtx -> Fill(*numVtx/*,histWeight*/);
                 hist_IBL_MapavePU -> Fill(*averagePU/*,histWeight*/);
-                if ((trackNIBLHits)[i]>0) {
+                //hist_IBL_MapnumVtx -> Fill(*numVtx/*,histWeight*/);
+		if ((trackNIBLHits)[i]>0) {
                     hist_IBL_MapHitEta -> Fill((trackEta)[i]/*,histWeight*/);
                     hist_IBL_MapHitPt -> Fill((trackPt)[i]/*,histWeight*/);
-                    hist_IBL_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
-                    hist_IBL_MapHitavePU -> Fill(*averagePU/*,histWeight*/);
+		    hist_IBL_MapHitavePU -> Fill(*averagePU/*,histWeight*/);
                 }
             }
 
@@ -513,12 +512,12 @@ Bool_t MySelector::Process(Long64_t entry)
             if ((trackNIBLHits)[i]>0 && (trackNL1Hits)[i]>0 && (trackNL2Hits)[i]>0) {
                 hist_BLY_MapEta      -> Fill((trackEta)[i]/*,histWeight*/);
                 hist_BLY_MapPt      -> Fill((trackPt)[i]/*,histWeight*/);
-                hist_BLY_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
+		//hist_BLY_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
                 hist_BLY_MapavePU -> Fill(*averagePU/*,histWeight*/);
                 if ((trackNBLHits)[i]>0) {
                     hist_BLY_MapHitEta -> Fill((trackEta)[i]/*,histWeight*/);
                     hist_BLY_MapHitPt -> Fill((trackPt)[i]/*,histWeight*/);
-                    hist_BLY_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
+                    //hist_BLY_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
                     hist_BLY_MapHitavePU -> Fill(*averagePU/*,histWeight*/);
                 }
             }
@@ -527,12 +526,12 @@ Bool_t MySelector::Process(Long64_t entry)
             if ((trackNIBLHits)[i]>0 && (trackNBLHits)[i]>0 && (trackNL2Hits)[i]>0) {
                 hist_LY1_MapEta      -> Fill((trackEta)[i]/*,histWeight*/);
                 hist_LY1_MapPt      -> Fill((trackPt)[i]/*,histWeight*/);
-                hist_LY1_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
+		//hist_LY1_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
                 hist_LY1_MapavePU -> Fill(*averagePU/*,histWeight*/);
                 if ((trackNL1Hits)[i]>0) {
                     hist_LY1_MapHitEta -> Fill((trackEta)[i]/*,histWeight*/);
                     hist_LY1_MapHitPt -> Fill((trackPt)[i]/*,histWeight*/);
-                    hist_LY1_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
+                    //hist_LY1_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
                     hist_LY1_MapHitavePU -> Fill(*averagePU/*,histWeight*/);
                 }
             }
@@ -541,18 +540,17 @@ Bool_t MySelector::Process(Long64_t entry)
             if ((trackNIBLHits)[i]>0 && (trackNBLHits)[i]>0 && (trackNL1Hits)[i]>0) {
                 hist_LY2_MapEta      -> Fill((trackEta)[i]/*,histWeight*/);
                 hist_LY2_MapPt      -> Fill((trackPt)[i]/*,histWeight*/);
-                hist_LY2_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
+		//hist_LY2_MapnumVtx      -> Fill(*numVtx/*,histWeight*/);
                 hist_LY2_MapavePU -> Fill(*averagePU/*,histWeight*/);
                 if ((trackNL2Hits)[i]>0) {
                     hist_LY2_MapHitEta -> Fill((trackEta)[i]/*,histWeight*/);
                     hist_LY2_MapHitPt -> Fill((trackPt)[i]/*,histWeight*/);
-                    hist_LY2_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
+                    //hist_LY2_MapHitnumVtx -> Fill(*numVtx/*,histWeight*/);
                     hist_LY2_MapHitavePU -> Fill(*averagePU/*,histWeight*/);
                 }
             }
 
 	    }
-}
 	}
 
 
@@ -622,15 +620,15 @@ Bool_t MySelector::Process(Long64_t entry)
         if (truePt[j] > 2.0) hist_true_eta->Fill(trueEta[j]);
         if (trueEta[j] < 2.5) hist_true_pt->Fill(truePt[j]);
 
-        if (truePt[j] <= 2.0 || TMath::Abs(trueEta[j]) > 2.5) continue;
-        hist_true_phi->Fill(truePhi[j]);
-        hist_true_numVtx->Fill(*numVtx);
-        hist_true_avePU->Fill(*averagePU);
+        //if (truePt[j] <= 2.0 && TMath::Abs(trueEta[j]) > 2.5) continue;
+        if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_true_phi->Fill(truePhi[j]);
+        if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_true_avePU->Fill(*averagePU);
+        //hist_true_numVtx->Fill(*numVtx);
 
         // Loose track selection
         bool loose = false;
         for (int i=0; i<ntracks; i++) { //track loop
-            if (trackPt[i] > 2.0 && TMath::Abs((trackEta)[i])<=2.5  
+            if (trackPt[i] > 0.4 && TMath::Abs((trackEta)[i])<=2.5  
                     && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
                     && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
                     && trackNPixelHoles[i]<=1 
@@ -645,11 +643,11 @@ Bool_t MySelector::Process(Long64_t entry)
             dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
             hist_trk_dr->Fill(dR);
             if (dR <= 0.02 && truthmatchprob[i] > 0.95) {
-                hist_truepass_pt->Fill(truePt[j]);
-                hist_truepass_eta->Fill(trueEta[j]);
-                hist_truepass_phi->Fill(truePhi[j]);
-                hist_truepass_numVtx->Fill(*numVtx);
-                hist_truepass_avePU->Fill(*averagePU);
+                if (trueEta[j] < 2.5)                                hist_truepass_pt->Fill(truePt[j]);
+                if (truePt[j] > 2.0)                                 hist_truepass_eta->Fill(trueEta[j]);
+                if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_truepass_phi->Fill(truePhi[j]);
+                if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_truepass_avePU->Fill(*averagePU);
+                //hist_truepass_numVtx->Fill(*numVtx);
             }
         } //end of track loop
     } //end of true loop
@@ -657,8 +655,8 @@ Bool_t MySelector::Process(Long64_t entry)
     hist_trkeff_pt->Divide(hist_truepass_pt,hist_true_pt,1,1);
     hist_trkeff_eta->Divide(hist_truepass_eta,hist_true_eta,1,1);
     hist_trkeff_phi->Divide(hist_truepass_phi,hist_true_phi,1,1);
-    hist_trkeff_numVtx->Divide(hist_truepass_numVtx,hist_true_numVtx,1,1);
     hist_trkeff_avePU->Divide(hist_truepass_avePU,hist_true_avePU,1,1);
+    //hist_trkeff_numVtx->Divide(hist_truepass_numVtx,hist_true_numVtx,1,1);
 
     hist_IBL_MapHitEtaeff->Divide(hist_IBL_MapHitEta,hist_IBL_MapEta,1,1);
     hist_BLY_MapHitEtaeff->Divide(hist_BLY_MapHitEta,hist_BLY_MapEta,1,1);
@@ -668,14 +666,14 @@ Bool_t MySelector::Process(Long64_t entry)
     hist_BLY_MapHitPteff->Divide(hist_BLY_MapHitPt,hist_BLY_MapPt,1,1);
     hist_LY1_MapHitPteff->Divide(hist_LY1_MapHitPt,hist_LY1_MapPt,1,1);
     hist_LY2_MapHitPteff->Divide(hist_LY2_MapHitPt,hist_LY2_MapPt,1,1);
-    hist_IBL_MapHitnumVtxeff->Divide(hist_IBL_MapHitnumVtx,hist_IBL_MapHitnumVtx,1,1);
-    hist_BLY_MapHitnumVtxeff->Divide(hist_BLY_MapHitnumVtx,hist_BLY_MapHitnumVtx,1,1);
-    hist_LY1_MapHitnumVtxeff->Divide(hist_LY1_MapHitnumVtx,hist_LY1_MapHitnumVtx,1,1);
-    hist_LY2_MapHitnumVtxeff->Divide(hist_LY2_MapHitnumVtx,hist_LY2_MapHitnumVtx,1,1);
-    hist_IBL_MapHitavePU->Divide(hist_IBL_MapHitavePU,hist_IBL_MapHitavePU,1,1);
-    hist_BLY_MapHitavePU->Divide(hist_BLY_MapHitavePU,hist_BLY_MapHitavePU,1,1);
-    hist_LY1_MapHitavePU->Divide(hist_LY1_MapHitavePU,hist_LY1_MapHitavePU,1,1);
-    hist_LY2_MapHitavePU->Divide(hist_LY2_MapHitavePU,hist_LY2_MapHitavePU,1,1);
+    //hist_IBL_MapHitnumVtxeff->Divide(hist_IBL_MapHitnumVtx,hist_IBL_MapHitnumVtx,1,1);
+    //hist_BLY_MapHitnumVtxeff->Divide(hist_BLY_MapHitnumVtx,hist_BLY_MapHitnumVtx,1,1);
+    //hist_LY1_MapHitnumVtxeff->Divide(hist_LY1_MapHitnumVtx,hist_LY1_MapHitnumVtx,1,1);
+    //hist_LY2_MapHitnumVtxeff->Divide(hist_LY2_MapHitnumVtx,hist_LY2_MapHitnumVtx,1,1);
+    hist_IBL_MapHitavePUeff->Divide(hist_IBL_MapHitavePU,hist_IBL_MapavePU,1,1);
+    hist_BLY_MapHitavePUeff->Divide(hist_BLY_MapHitavePU,hist_BLY_MapavePU,1,1);
+    hist_LY1_MapHitavePUeff->Divide(hist_LY1_MapHitavePU,hist_LY1_MapavePU,1,1);
+    hist_LY2_MapHitavePUeff->Divide(hist_LY2_MapHitavePU,hist_LY2_MapavePU,1,1);
 
     return kTRUE;
 }
