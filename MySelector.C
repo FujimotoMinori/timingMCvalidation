@@ -45,7 +45,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     // The tree argument is deprecated (on PROOF 0 is passed).
 
     TString option = GetOption();
-    outputfile_ = "output18.root";
+    outputfile_ = "output15.root";
 
     //TH1F
     h_LB= new TH1F("LB", "; LB; ", 100, 0.0, 1500.0);
@@ -90,7 +90,7 @@ void MySelector::SlaveBegin(TTree * /*tree*/)
     hist_trkeff_eta  = new TH1F("hist_trkeff_eta", "; eta;tracking efficiency ", 56, -2.8, 2.8); 
     hist_trkeff_phi  = new TH1F("hist_trkeff_phi", "; phi;tracking efficiency ", 64,-TMath::Pi(), TMath::Pi()); 
     //hist_trkeff_numVtx  = new TH1F("hist_trkeff_numVtx", "; numVtx;tracking efficiency ", 50,-0.5, 49.5); 
-    hist_trkeff_avePU  = new TH1F("hist_trkeff_avePU", "; avePU;tracking efficiency ", 50,0.0, 100.); 
+    hist_trkeff_avePU  = new TH1F("hist_trkeff_avePU", "; averagePU;tracking efficiency ", 50,0.0, 100.); 
 
     hist_IBL_MapHitEtaeff         = new TH1F("hist_IBL_MapHitEtaeff",    ";eta;hit efficiency(IBL)", 56, -2.8, 2.8);
     hist_BLY_MapHitEtaeff         = new TH1F("hist_BLY_MapHitEtaeff",    ";eta;hit efficiency(blayer)", 56, -2.8, 2.8);
@@ -617,17 +617,16 @@ Bool_t MySelector::Process(Long64_t entry)
     } //end of track loop
 
     for (int j=0; j<ntrackstrue; j++) { //true loop
+        //if (truePt[j] <= 2.0 && TMath::Abs(trueEta[j]) > 2.5) continue;
         if (truePt[j] > 2.0) hist_true_eta->Fill(trueEta[j]);
         if (trueEta[j] < 2.5) hist_true_pt->Fill(truePt[j]);
-
-        //if (truePt[j] <= 2.0 && TMath::Abs(trueEta[j]) > 2.5) continue;
         if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_true_phi->Fill(truePhi[j]);
         if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_true_avePU->Fill(*averagePU);
-        //hist_true_numVtx->Fill(*numVtx);
 
         // Loose track selection
         bool loose = false;
-        for (int i=0; i<ntracks; i++) { //track loop
+	double dRmin = 10.;
+	for (int i=0; i<ntracks; i++) { //track loop
             if (trackPt[i] > 0.4 && TMath::Abs((trackEta)[i])<=2.5  
                     && (trackNPixelHits[i]+trackNSCTHits[i])>=7 
                     && (nPixelShared[i]+trackNSCTSharedHits[i])<=1 
@@ -643,13 +642,37 @@ Bool_t MySelector::Process(Long64_t entry)
             dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
             hist_trk_dr->Fill(dR);
             if (dR <= 0.02 && truthmatchprob[i] > 0.95) {
+                if (dR < dRmin) dRmin = dR;
+                //if (trueEta[j] < 2.5)                                hist_truepass_pt->Fill(truePt[j]);
+                //if (truePt[j] > 2.0)                                 hist_truepass_eta->Fill(trueEta[j]);
+                //if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_truepass_phi->Fill(truePhi[j]);
+                //if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_truepass_avePU->Fill(*averagePU);
+            }
+        } //end of track loop
+
+	for (int k=0; k<ntracks; k++) { //second track loop
+            if (trackPt[k] > 0.4 && TMath::Abs((trackEta)[k])<=2.5  
+                    && (trackNPixelHits[k]+trackNSCTHits[k])>=7 
+                    && (nPixelShared[k]+trackNSCTSharedHits[k])<=1 
+                    && trackNPixelHoles[k]<=1 
+                    && (trackNPixelHoles[k]+trackNSCTHoles[k])<=2 ) { loose=true; }
+            if (!loose) { continue; }
+
+            double dPhi = 0.;
+            double dEta = 0.;
+            double dR = 0.;
+            dPhi = trackPhi[k]-truePhi[j];
+            dEta = trackEta[k]-trueEta[j];
+            dR = TMath::Sqrt(dPhi*dPhi+dEta*dEta);
+            if (dR ==  dRmin && truthmatchprob[k] > 0.95) {
                 if (trueEta[j] < 2.5)                                hist_truepass_pt->Fill(truePt[j]);
                 if (truePt[j] > 2.0)                                 hist_truepass_eta->Fill(trueEta[j]);
                 if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_truepass_phi->Fill(truePhi[j]);
                 if (truePt[j] > 2.0 && TMath::Abs(trueEta[j]) < 2.5) hist_truepass_avePU->Fill(*averagePU);
-                //hist_truepass_numVtx->Fill(*numVtx);
             }
-        } //end of track loop
+        } //end of second track loop
+
+        
     } //end of true loop
 
     hist_trkeff_pt->Divide(hist_truepass_pt,hist_true_pt,1,1);

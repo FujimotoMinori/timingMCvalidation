@@ -15,7 +15,7 @@ def setHistoStyle( h, lc, ms ):
     size = 0.045
     h.SetLineColor(lc)
     h.SetLineWidth(2)
-    h.SetMarkerStyle(ms)
+    #h.SetMarkerStyle(ms)
     h.SetMarkerColor(lc)
     h.SetTitleOffset( 1.3, "X" )
     h.SetTitleOffset( 1.3, "Y" )
@@ -32,7 +32,7 @@ def setCanvasStyle( c ):
     c.SetBottomMargin(0.15)
 
 def SetLegendStyle(l):
-    l.SetTextSize(0.04);
+    l.SetTextSize(0.05);
     l.SetTextFont(42);
     l.SetFillStyle(0);
     l.SetFillColor(0);
@@ -75,7 +75,8 @@ for i in range(len(hnames)):
     setHistoStyle(t1, ROOT.kBlue+1, 20)
     setHistoStyle(t2, ROOT.kRed+1,25)
 
-    #t.Draw("colz")        # colz option is to draw a colourful 2D histograms.      
+    t1.GetYaxis().SetRangeUser(0.85,1.1)  # set the position of the Label of Y axis away from the Y axis.
+    t2.GetYaxis().SetRangeUser(0.85,1.1)  # set the position of the Label of Y axis away from the Y axis.
     #t.GetYaxis().SetTitleOffset(1.4)  # set the position of the Label of Y axis away from the Y axis.
     #t.GetZaxis().SetTitle("Average rate [Hz]") # Z axis is defined for 2D histogram, the palette axis.
     #t.GetZaxis().SetTitleOffset(1.2) # set the position of the Label of palette(Z) axis.
@@ -83,15 +84,15 @@ for i in range(len(hnames)):
     #gStyle.SetPadLeftMargin(0.15)    
     #gStyle.SetPadRightMargin(0.20)
     #ROOT.ATLASLabel(0.6, 0.87, "internal", ROOT.kBlack) # must be put after t.Draw() as it is written on 
-    lg = TLegend(0.62, 0.6, 1.00, 0.90)
+    lg = TLegend(0.62, 0.7, 1.00, 0.90) # 0.62,0.3,1.00,0.50
     SetLegendStyle(lg)
     #lg.SetHeader("Data ID=123 (N=100)")
-    lg.AddEntry( t1, "2015", "lp")
-    lg.AddEntry( t1, "Mean = " + format(t1.GetMean(), '.2f'), "")
-    lg.AddEntry( t1, "Std. Dev. = " + format(t1.GetStdDev(), '.2f'), "")
-    lg.AddEntry( t2, "2018", "lp")
-    lg.AddEntry( t2, "Mean = " + format(t2.GetMean(), '.2f'), "")
-    lg.AddEntry( t2, "Std. Dev. = " + format(t2.GetStdDev(), '.2f'), "")
+    lg.AddEntry( t1, "defalut MC", "lp")
+    #lg.AddEntry( t1, "Mean = " + format(t1.GetMean(), '.2f'), "")
+    #lg.AddEntry( t1, "Std. Dev. = " + format(t1.GetStdDev(), '.2f'), "")
+    lg.AddEntry( t2, "new MC", "lp")
+    #lg.AddEntry( t2, "Mean = " + format(t2.GetMean(), '.2f'), "")
+    #lg.AddEntry( t2, "Std. Dev. = " + format(t2.GetStdDev(), '.2f'), "")
 
     #
     c.cd()
